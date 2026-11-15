@@ -3,35 +3,314 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MozaJuda 258 - Ajuda em Moçambique</title>
+<title>Moz Ajuda 258 - Ajuda em Moçambique</title>
 <style>
-body{font-family:Arial,sans-serif;margin:0;background:#f2f2f2;text-align:center}
-header{background:#007a3d;color:white;padding:30px 15px}
-header h1{margin:0;font-size:32px}
-header p{font-size:18px}
-.box{background:white;margin:20px;padding:20px;border-radius:12px;text-align:left}
-.box h2{color:#007a3d}
-.btn{display:block;background:#25D366;color:white;padding:15px;border-radius:10px;text-decoration:none;text-align:center;font-size:18px;font-weight:bold;margin-top:15px}
-footer{padding:20px;color:#666}
+body{font-family:Arial,sans-serif;background:#f4f6f8;margin:0;padding:0}
+header{background:#008751;color:white;padding:18px;text-align:center}
+header h1{margin:0;font-size:24px}
+.container{max-width:600px;margin:15px auto;padding:0 12px}
+.card{background:white;border-radius:12px;padding:15px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card.denunciado{border:2px solid #dc3545;background:#fff5f5}
+.card-publicidade{background:#fff3cd;border:2px solid #ffc107;text-align:center}
+.card-destaque{background:#fff8e1;border:2px solid #ffc107}
+input,textarea,select{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:8px;box-sizing:border-box;font-size:15px}
+button{background:#008751;color:white;border:0;padding:13px;border-radius:8px;width:100%;font-size:16px;font-weight:bold;cursor:pointer;margin-top:6px}
+.post{border-left:4px solid #008751}
+.post img{width:100%;border-radius:10px;margin-top:10px}
+.tag{display:inline-block;background:#e6f4ea;color:#008751;padding:3px 8px;border-radius:20px;font-size:12px;margin-top:6px}
+.tag-denuncia{display:inline-block;background:#ffe0e0;color:#dc3545;padding:3px 8px;border-radius:20px;font-size:12px;margin-top:6px;font-weight:bold}
+.tag-destaque{display:inline-block;background:#ffc107;color:#000;padding:3px 8px;border-radius:20px;font-size:12px;margin-top:6px;font-weight:bold}
+.whats{background:#25D366}
+.btn-editar{background:#ffc107;color:#000}
+.btn-apagar{background:#dc3545}
+.btn-gosto{background:#ff4757}
+.btn-partilhar{background:#007bff}
+.btn-denunciar{background:#6c757d}
+.btn-publi{background:#ffc107;color:#000;font-size:17px}
+.btn-destaque{background:#ff9800}
+.aviso{background:#fff3cd;border:1px solid #ffcc00;padding:10px;border-radius:8px;font-size:13px}
+.aviso-denuncia{background:#f8d7da;border:1px solid #dc3545;padding:10px;border-radius:8px;font-size:13px;color:#721c24;font-weight:bold;text-align:center}
+.row{display:flex;gap:8px}
+.row button{flex:1}
+#modalPin{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:999;align-items:center;justify-content:center;padding:20px}
+#modalPin .box{background:white;border-radius:12px;padding:20px;width:100%;max-width:350px}
+#modalPin input{font-size:18px;letter-spacing:2px}
+.btn-cancelar{background:#888}
 </style>
 </head>
 <body>
 <header>
-<h1>MozaJuda 258 🇲🇿</h1>
+<h1>🇲🇿 Moz Ajuda 258</h1>
 <p>Ajuda rápida para o teu dia a dia em Moçambique</p>
 </header>
-<div class="box">
+<div class="container">
+
+<!-- PUBLICIDADE / DESTAQUE NO TOPO -->
+<div class="card card-publicidade">
+<h2 style="margin:0">⭐ PUBLICIDADE - DESTAQUE NO TOPO</h2>
+<p><b>Queres o teu produto / negócio aqui em cima, em destaque para todo mundo ver primeiro?</b></p>
+<p style="font-size:13px">O teu produto fica no topo do site, antes de todos os pedidos. Todo mundo que abrir o site vê primeiro o teu.</p>
+<button class="btn-publi" onclick="queroPublicidade()">📢 QUERO FAZER PUBLICIDADE / PÔR EM DESTAQUE</button>
+<p style="font-size:12px;color:#555">Toca e fala connosco no WhatsApp 833715054 para conversar sobre o valor.</p>
+</div>
+
+<div class="card">
 <h2>Como podemos ajudar?</h2>
-<p>✅ Dúvidas sobre internet e telemóvel</p>
-<p>✅ Ajuda com Facebook, WhatsApp e TikTok</p>
-<p>✅ Criar sites e negócios online</p>
-<p>✅ Aprender a usar o telemóvel</p>
-<a class="btn" href="https://wa.me/258840000000">Falar no WhatsApp</a>
+<p>✅ Quero Ajudar<br>✅ Preciso de Ajuda<br>✅ Vaga<br>✅ Quero Vender / Quero Comprar<br>✅ Negócios<br>⭐ Publicidade / Destaque</p>
 </div>
-<div class="box">
+<div class="card">
+<h2>Publicar</h2>
+<div class="aviso"><b>ATENÇÃO:</b> Tudo aqui é PÚBLICO. Não publiques BI, documentos ou fotos privadas. Pedidos falsos ou burla serão apagados.</div>
+<input id="nome" placeholder="Teu nome - vai ser a tua conta">
+<input id="local" placeholder="Bairro / Cidade - ex: Beira, Sofala">
+<select id="tipo" onchange="atualizarAviso()">
+<option value="Quero Ajudar">🙏 Quero Ajudar - Vai para Site + WhatsApp do dono</option>
+<option value="Preciso de Ajuda">🆘 Preciso de Ajuda - Vai para Site + WhatsApp do dono</option>
+<option value="Vaga">💼 Vaga - Vai para Site + WhatsApp do dono</option>
+<option value="Quero Vender">🛒 Quero Vender - Só vai para o Site</option>
+<option value="Quero Comprar">🛍️ Quero Comprar - Só vai para o Site</option>
+<option value="Negócios">💰 Negócios - Só vai para o Site</option>
+</select>
+<p id="avisoTipo" style="font-size:13px;color:#008751;font-weight:bold;text-align:center">✅ Este vai para o Site + WhatsApp 833715054</p>
+<textarea id="msg" rows="3" placeholder="O que precisas? Explica aqui..."></textarea>
+<input id="contacto" placeholder="Teu WhatsApp / Telefone - ex: 833715054">
+<label><b>Foto (vai ser pública):</b></label>
+<input type="file" id="foto" accept="image/*">
+<img id="preview" style="display:none;width:100%;border-radius:10px;margin-top:8px">
+<button onclick="publicar()">PUBLICAR</button>
+<p id="status" style="text-align:center;color:green"></p>
+<p style="font-size:12px;text-align:center;color:#555">A tua conta é só nome + número. Com o mesmo nome + número podes editar e apagar o teu pedido depois.</p>
+</div>
+
+<div class="card">
+<h2>🔍 Pesquisar</h2>
+<input id="pesquisa" placeholder="Pesquisa por nome, bairro, ou palavra... ex: Beira, emprego" oninput="mostrarFeed()">
+<select id="filtroTipo" onchange="mostrarFeed()">
+<option value="">Todos os tipos</option>
+<option value="Quero Ajudar">🙏 Quero Ajudar</option>
+<option value="Preciso de Ajuda">🆘 Preciso de Ajuda</option>
+<option value="Vaga">💼 Vaga</option>
+<option value="Quero Vender">🛒 Quero Vender</option>
+<option value="Quero Comprar">🛍️ Quero Comprar</option>
+<option value="Negócios">💰 Negócios</option>
+</select>
+</div>
+
+<div id="feed"></div>
+<div class="card">
 <h2>Sobre nós</h2>
-<p>Somos de Maputo e queremos ajudar todos os moçambicanos a usar melhor a tecnologia.</p>
+<p>Somos de Moçambique e queremos ajudar todos os moçambicanos a usar melhor a tecnologia e a encontrar ajuda, vagas e negócios.</p>
+<p>📢 Para publicidade e destaque no topo, fala connosco no WhatsApp 833715054 para conversar sobre o valor.</p>
 </div>
-<footer>© 2026 MozaJuda 258 - Maputo, Moçambique</footer>
+</div>
+
+<div id="modalPin">
+<div class="box">
+<h3 style="margin:0">Acesso restrito</h3>
+<p style="font-size:14px;color:#555">Escreve o código do dono para continuar.</p>
+<input type="password" id="inputPin" placeholder="••••••••••••" autocomplete="off">
+<button id="btnConfirmarPin">Confirmar</button>
+<button class="btn-cancelar" onclick="fecharPin()">Cancelar</button>
+<p id="erroPin" style="color:red;text-align:center;display:none">Código errado.</p>
+</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-app.js";
+import { getDatabase, ref, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-database.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyCZuXx-xgo8RYjt-Nt3NZUV7Sw4js-wU-c",
+  authDomain: "mozajuda258.firebaseapp.com",
+  databaseURL: "https://mozajuda258-default-rtdb.firebaseio.com",
+  projectId: "mozajuda258",
+  storageBucket: "mozajuda258.firebasestorage.app",
+  messagingSenderId: "784993314685",
+  appId: "1:784993314685:web:22e2317e6315f059c1ce14",
+  measurementId: "G-2H1PZ2LM6C"
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const postsRef = ref(db, 'posts');
+let fotoBase64 = "";
+let postsAtuais = {};
+let acaoPendente = null;
+let keyPendente = null;
+const _k = [59,112,59,118,63,123,58,110,63,122,64,116];
+function verificarPin(tentativa){
+  if(!tentativa || tentativa.length !== 12) return false;
+  for(let i=0;i<12;i++){ if(tentativa.charCodeAt(i) !== _k[i]-7) return false; }
+  return true;
+}
+function abrirPin(acao, key){
+  acaoPendente = acao; keyPendente = key;
+  document.getElementById('inputPin').value = '';
+  document.getElementById('erroPin').style.display = 'none';
+  document.getElementById('modalPin').style.display = 'flex';
+}
+window.fecharPin = function(){
+  document.getElementById('modalPin').style.display = 'none';
+  acaoPendente = null; keyPendente = null;
+}
+document.getElementById('btnConfirmarPin').onclick = ()=>{
+  const tentativa = document.getElementById('inputPin').value;
+  if(!verificarPin(tentativa)){ document.getElementById('erroPin').style.display = 'block'; return; }
+  const key = keyPendente; const acao = acaoPendente;
+  fecharPin();
+  if(acao === 'apagar') fazerApagar(key);
+  if(acao === 'editar') fazerEditar(key);
+}
+window.atualizarAviso = function(){
+  const tipo = document.getElementById('tipo').value;
+  const el = document.getElementById('avisoTipo');
+  if(tipo === 'Quero Ajudar' || tipo === 'Preciso de Ajuda' || tipo === 'Vaga'){
+    el.innerText = '✅ Este vai para o Site + WhatsApp 833715054';
+    el.style.color = '#008751';
+  } else {
+    el.innerText = '🌐 Este vai SÓ para o Site, não vai para o WhatsApp';
+    el.style.color = '#007bff';
+  }
+}
+// NOVO: PUBLICIDADE
+window.queroPublicidade = function(){
+  const texto = encodeURIComponent("Olá Moz Ajuda 258! ⭐\n\nQuero fazer PUBLICIDADE / pôr o meu produto em DESTAQUE NO TOPO do site.\n\nQuero conversar sobre o valor.\n\nO meu produto é:");
+  window.open("https://wa.me/258833715054?text="+texto, "_blank");
+}
+window.queroDestaquePost = function(nome, msg){
+  const texto = encodeURIComponent("Olá Moz Ajuda 258! ⭐\n\nQuero pôr este pedido em DESTAQUE NO TOPO:\n\nNome: "+nome+"\nPedido: "+msg+"\n\nQuero conversar sobre o valor da publicidade.");
+  window.open("https://wa.me/258833715054?text="+texto, "_blank");
+}
+document.getElementById('foto').addEventListener('change', (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ()=>{
+    const img = new Image();
+    img.onload = ()=>{
+      const canvas = document.createElement('canvas');
+      const max = 800;
+      let w = img.width, h = img.height;
+      if(w > max){ h = h * max / w; w = max; }
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      fotoBase64 = canvas.toDataURL('image/jpeg', 0.7);
+      const prev = document.getElementById('preview');
+      prev.src = fotoBase64; prev.style.display = 'block';
+    };
+    img.src = reader.result;
+  };
+  reader.readAsDataURL(file);
+});
+window.publicar = function(){
+  const nome = document.getElementById('nome').value.trim();
+  const local = document.getElementById('local').value.trim();
+  const tipo = document.getElementById('tipo').value;
+  const msg = document.getElementById('msg').value.trim();
+  const contacto = document.getElementById('contacto').value.trim();
+  if(!nome || !msg || !contacto){ alert('Escreve teu nome, o que precisas e teu número. O número é a tua conta.'); return; }
+  push(postsRef, {nome, local, tipo, msg, contacto, foto: fotoBase64, likes: 0, denuncias: 0, data: Date.now()});
+  if(tipo === 'Quero Ajudar' || tipo === 'Preciso de Ajuda' || tipo === 'Vaga'){
+    document.getElementById('status').innerText = 'Publicado no Site + a enviar para WhatsApp 833715054...';
+    const texto = encodeURIComponent("🔔 NOVA PUBLICAÇÃO NO MOZ AJUDA\n\nTipo: "+tipo+"\nNome: "+nome+"\nLocal: "+local+"\nPedido: "+msg+"\nContacto: "+contacto);
+    window.open("https://wa.me/258833715054?text="+texto, "_blank");
+  } else {
+    document.getElementById('status').innerText = 'Publicado só no Site! Este tipo não vai para o WhatsApp.';
+  }
+  document.getElementById('msg').value = ''; fotoBase64 = '';
+  document.getElementById('preview').style.display = 'none';
+}
+function verificarDono(key){
+  const p = postsAtuais[key];
+  const meuNome = prompt('Para editar/apagar, escreve o MESMO nome que usaste ao publicar:');
+  if(meuNome === null) return false;
+  const meuNum = prompt('Escreve o MESMO número que usaste ao publicar:');
+  if(meuNum === null) return false;
+  const limpar = (s)=> String(s||'').replace(/[^0-9]/g,'').slice(-9);
+  if(meuNome.trim().toLowerCase() === String(p.nome||'').trim().toLowerCase() && limpar(meuNum) === limpar(p.contacto)){
+    return true;
+  }
+  return false;
+}
+function fazerApagar(key){
+  if(!confirm('Tens a certeza que queres apagar este pedido / publicidade para sempre?')) return;
+  remove(ref(db, 'posts/' + key));
+  alert('Apagado.');
+}
+function fazerEditar(key){
+  const p = postsAtuais[key];
+  const novoMsg = prompt('Edita o que precisas:', p.msg);
+  if(novoMsg === null) return;
+  const novoLocal = prompt('Edita teu bairro / cidade:', p.local || '');
+  update(ref(db, 'posts/' + key), {msg: novoMsg, local: novoLocal});
+  alert('Pedido atualizado.');
+}
+window.apagarPost = function(key){
+  if(verificarDono(key)){ fazerApagar(key); return; }
+  if(confirm('Não é o teu pedido. Só o dono do site pode apagar. Tens o código do dono?')){ abrirPin('apagar', key); }
+}
+window.editarPost = function(key){
+  if(verificarDono(key)){ fazerEditar(key); return; }
+  if(confirm('Não é o teu pedido. Só o dono do site pode editar. Tens o código do dono?')){ abrirPin('editar', key); }
+}
+window.darGosto = function(key){
+  const p = postsAtuais[key];
+  const novo = (p.likes || 0) + 1;
+  update(ref(db, 'posts/' + key), {likes: novo});
+}
+window.partilharPost = function(nome, msg){
+  const texto = "Vê este pedido no Moz Ajuda 258: " + nome + " - " + msg + " | https://juniorzamilo943-ux.github.io/mozajuda258/";
+  if(navigator.share){ navigator.share({title:'Moz Ajuda 258', text: texto, url: 'https://juniorzamilo943-ux.github.io/mozajuda258/'}); }
+  else { window.open("https://wa.me/?text="+encodeURIComponent(texto), "_blank"); }
+}
+window.denunciarPost = function(key){
+  const p = postsAtuais[key];
+  const motivo = prompt('Porque queres denunciar este pedido?\nEscreve: Falso / Burla / Palavrão / Foto roubada / Outro\n\nEscreve o motivo:');
+  if(motivo === null || motivo.trim() === '') return;
+  if(!confirm('Tens a certeza que queres denunciar este pedido?\nMotivo: ' + motivo + '\nVai ser enviado para o dono do site.')) return;
+  const novo = (p.denuncias || 0) + 1;
+  update(ref(db, 'posts/' + key), {denuncias: novo, ultimoMotivo: motivo});
+  const texto = encodeURIComponent("⚠️ DENÚNCIA NO MOZ AJUDA\n\nTipo do pedido: "+p.tipo+"\nNome do pedido: "+p.nome+"\nLocal: "+(p.local||'')+"\nPedido: "+p.msg+"\nContacto do pedido: "+(p.contacto||'')+"\nMotivo da denúncia: "+motivo+"\nTotal de denúncias: "+novo+"\n\nAbre o site para ver e apagar se for preciso: https://juniorzamilo943-ux.github.io/mozajuda258/");
+  window.open("https://wa.me/258833715054?text="+texto, "_blank");
+  alert('Denúncia enviada! Obrigado. O dono do site já foi avisado. Total de denúncias: ' + novo);
+}
+window.mostrarFeed = function(){
+  const feed = document.getElementById('feed');
+  const busca = (document.getElementById('pesquisa').value || '').toLowerCase();
+  const filtro = document.getElementById('filtroTipo').value;
+  feed.innerHTML = '<h2>Pedidos de todo Moçambique</h2>';
+  const data = postsAtuais;
+  if(!data || Object.keys(data).length === 0){ feed.innerHTML += '<div class="card">Ainda não há pedidos. Sê o primeiro!</div>'; return; }
+  let lista = Object.entries(data).sort((a,b)=> b[1].data - a[1].data);
+  if(filtro) lista = lista.filter(([k,p])=> p.tipo === filtro);
+  if(busca) lista = lista.filter(([k,p])=> ((p.nome||'')+' '+(p.local||'')+' '+(p.msg||'')+' '+(p.tipo||'')).toLowerCase().includes(busca));
+  if(lista.length === 0){ feed.innerHTML += '<div class="card">Nenhum resultado para esta pesquisa.</div>'; return; }
+  lista.forEach(([key,p])=>{
+    const dataStr = new Date(p.data).toLocaleString('pt-MZ');
+    const denunciado = (p.denuncias || 0) >= 3;
+    feed.innerHTML += `<div class="card post ${denunciado ? 'denunciado' : ''}">
+      <h3>${p.nome} - ${p.local || ''}</h3>
+      <small>${dataStr}</small><br><span class="tag">${p.tipo}</span>
+      ${ (p.denuncias||0) > 0 ? `<span class="tag-denuncia">⚠️ Denúncias: ${p.denuncias}</span>` : '' }
+      ${ denunciado ? `<div class="aviso-denuncia">⚠️ ESTE PEDIDO FOI DENUNCIADO ${p.denuncias}x E ESTÁ EM ANÁLISE</div>` : '' }
+      <p>${p.msg}</p>
+      ${p.foto ? `<img src="${p.foto}">` : ''}
+      ${p.contacto ? `<a href="https://wa.me/258${String(p.contacto).replace(/[^0-9]/g,'').slice(-9)}" target="_blank"><button class="whats">Falar no WhatsApp: ${p.contacto}</button></a>` : ''}
+      <div class="row">
+        <button class="btn-gosto" onclick="darGosto('${key}')">❤️ Gostei (${p.likes || 0})</button>
+        <button class="btn-partilhar" onclick="partilharPost('${String(p.nome).replace(/'/g,'')}','${String(p.msg).replace(/'/g,'').substring(0,80)}')">↗️ Partilhar</button>
+      </div>
+      <div class="row">
+        <button class="btn-editar" onclick="editarPost('${key}')">✏️ Editar</button>
+        <button class="btn-apagar" onclick="apagarPost('${key}')">🗑️ Apagar</button>
+      </div>
+      <button class="btn-destaque" onclick="queroDestaquePost('${String(p.nome).replace(/'/g,'')}','${String(p.msg).replace(/'/g,'').substring(0,80)}')">⭐ Quero Destaque no Topo para este pedido</button>
+      <button class="btn-denunciar" onclick="denunciarPost('${key}')">⚠️ Denunciar este pedido</button>
+    </div>`;
+  });
+}
+onValue(postsRef, (snap)=>{
+  postsAtuais = snap.val() || {};
+  mostrarFeed();
+});
+</script>
 </body>
 </html>
